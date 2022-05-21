@@ -8,6 +8,8 @@ subjects = [f[:-5] for f in os.listdir(path_eeg) if f.endswith('.vhdr')]
 path_events_dic = f'/content/preprocessing_EEG_with_MNE/datasets/event_stimulus_new_dict.json'
 #path_events_dic = f'datasets/event_stimulus_new_dict.json'
 
+for s in subjects:
+    print(f'{s}')
 #raise SystemExit
 
 for sub in subjects:
@@ -15,16 +17,22 @@ for sub in subjects:
     raw_data = eeg.read_eeg()
     events, events_dict = eeg.get_events(raw_data, path_events_dic)
     stimulus, stimulus_dict = eeg.select_stimulus(events, events_dict)
-    print(stimulus_dict)
     if stimulus != None:
         pproc = ppeeg.PreprocessingEEG(raw_data, stimulus, stimulus_dict)
         pproc.run()
-        df_eeg = pproc.get_data_frame()
+        df_eeg, df_evoked = pproc.get_data_frame()
         df_eeg = df_eeg.rename(columns={"epoch":"trail"})
 
-        df_eeg.to_csv('/content/preprocessing_EEG_with_MNE/outputs_eeg/' + sub + '.csv')
-        #df_eeg.to_csv('outputs_eeg/' + sub + '.csv')
+        df_eeg.to_csv('/content/preprocessing_EEG_with_MNE/outputs_eeg/' + sub + '.csv',  index = False)
+        df_evoked.to_csv('/content/preprocessing_EEG_with_MNE/outputs_eeg/' + sub + '_evoked.csv', index = False)
+        #df_eeg.to_csv('outputs_eeg/' + sub + '.csv', index = False)
+        #df_evoked.to_csv('outputs_eeg/' + sub + '_evoked.csv', index = False)
     
     print('\n')
     print(f'{sub} done!')
     print('++++++++++++++++++++++++++++++++++++++++++++++++\n')
+    os.system('clear')
+    for s in subjects:
+        if s == sub:
+            print(f'{s} done!')
+        print('%s' % s)

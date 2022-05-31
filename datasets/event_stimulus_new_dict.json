@@ -161,6 +161,6 @@
     "Stimulus/48_50_R": 158,
     "Stimulus/48_100_R": 159,
     "Stimulus/48_150_R": 160,
-    "Answer/Equals": 251,
-    "Answer/Different": 252
+    "Response/Same": 251,
+    "Response/Different": 252
 }

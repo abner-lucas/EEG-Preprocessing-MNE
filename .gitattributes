@@ -1,3 +1,5 @@
 datasets/data_brainvision/*.eeg filter=lfs diff=lfs merge=lfs -text
 outputs_eeg/*.csv filter=lfs diff=lfs merge=lfs -text
+outputs_eeg/*.log filter=lfs diff=lfs merge=lfs -text
+notebooks/*.ipynb filter=lfs diff=lfs merge=lfs -text
 notebooks/outputs_fig/*.png filter=lfs diff=lfs merge=lfs -text

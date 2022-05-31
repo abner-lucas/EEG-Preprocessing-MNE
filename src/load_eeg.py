@@ -1,7 +1,8 @@
 import mne
 import glob
 import json
-import os
+
+from mne.utils import logger
 
 class LoadEEG:
     def __init__(self, path: str, subject: str):
@@ -12,10 +13,12 @@ class LoadEEG:
         #Checking existence of all files
         n_files = len(glob.glob(self.path + self.subject + '*'))
         if n_files < 3:
-            print('>>>>>>> There are missing files!')
+            with mne.use_log_level(True):
+                logger.info('There are missing files!')
             return None
         else:
-            print('>>>>>>> All files are present!')
+            with mne.use_log_level(True):
+                logger.info('All files are present!')
             name_files = [self.subject + '.eeg', self.subject + '.vhdr', self.subject + '.vmrk']
             files = [self.path + name for name in name_files]
             return files
@@ -49,10 +52,12 @@ class LoadEEG:
         stimulus = [x for i, x in enumerate(events_clean) if i % 2 == 0]
 
         if len(stimulus) < 120:
-            print('The subject performed less than 120 trials')
+            with mne.use_log_level(True):
+                logger.info('The subject performed less than 120 trials')
             return None, None
         else:
-            print('The subject performed 75% of the total trails')
+            with mne.use_log_level(True):
+                logger.info('The subject performed 75% of the total trails')
 
         #Descriptors that used
         stimulus_dict = {}

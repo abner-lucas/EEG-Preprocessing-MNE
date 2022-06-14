@@ -58,10 +58,11 @@ for sub in subjects:
             logger.info('Accuracy in the answers: ' + str(accuracy*100) + '%')
             logger.info('Mean response time: ' + str(response_time_mean) + 'ms')
 
-        df_ip = pd.DataFrame()     
-        df_ip['stimulus'] = iperformance.stimulus_name
-        df_ip['responses_expected'] = responses_expected
-        df_ip['responses_obtained'] = responses_obtained
+        df_ip = pd.DataFrame()
+        df_ip['condition'] = iperformance.stimulus_name
+        df_ip['response_expected'] = responses_expected
+        df_ip['response_obtained'] = responses_obtained
+        df_ip['response_time'] = response_time_sub
         df_ip.insert(0, 'subject_id', subject_id)
         df_ip.insert(1, 'group', group_subject)
 

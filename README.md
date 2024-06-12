@@ -35,5 +35,8 @@ python main.py
 - `scipy` 1.7.1
 - `pandas` 1.3.3
 
+## Autor
+- [@abner-lucas](https://github.com/abner-lucas)
+  
 ## Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [MIT](https://choosealicense.com/licenses/mit/) para mais detalhes.
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [MIT](https://choosealicense.com/licenses/mit/) para mais detalhes
